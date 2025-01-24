@@ -6,7 +6,6 @@ import {
   Modal,
   Platform,
   ScrollView,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -30,6 +29,7 @@ const InquiryModal = ({visible, onClose}) => {
         name,
         photo: profilePhotoUrl,
       });
+      onClose();
     } else {
       Alert.alert('Please fill both details');
     }
@@ -40,7 +40,7 @@ const InquiryModal = ({visible, onClose}) => {
       const storedName = user?.name;
       const storedProfilePhotoUrl = user?.photo;
       setName(storedName || '');
-      setProfilePhotoUrl(setProfilePhotoUrl || '');
+      setProfilePhotoUrl(storedProfilePhotoUrl || '');
     }
   }, [visible]);
 
@@ -50,13 +50,13 @@ const InquiryModal = ({visible, onClose}) => {
       animationType="slide"
       transparent={true}
       onRequestClose={onClose}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.modalContainer}>
+      <View style={inquiryStyles.modalContainer}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={inquiryStyles.keyboardAvoidingView}>
             <ScrollView contentContainerStyle={inquiryStyles.scrollViewContent}>
-              <View style={inquiryStyles.modalContainer}>
+              <View style={inquiryStyles.modalContent}>
                 <Text style={inquiryStyles.title}>Enter you details</Text>
                 <TextInput
                   style={inquiryStyles.input}
@@ -72,29 +72,26 @@ const InquiryModal = ({visible, onClose}) => {
                   placeholderTextColor={'#ccc'}
                   onChangeText={setProfilePhotoUrl}
                 />
-                <View style={inquiryStyles.buttonContainer}>
+                <View
+                  style={[inquiryStyles.buttonContainer, {marginBottom: 28}]}>
                   <TouchableOpacity
                     style={[inquiryStyles.button, inquiryStyles.cancelButton]}
-                    onPress={handleSave}>
+                    onPress={onClose}>
                     <Text style={inquiryStyles.buttonText}>Cancel</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={inquiryStyles.button}
-                    onPress={handleSave}>
+                    onPress={() => handleSave()}>
                     <Text style={inquiryStyles.buttonText}>Save</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             </ScrollView>
           </KeyboardAvoidingView>
-        </View>
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </View>
     </Modal>
   );
 };
 
 export default InquiryModal;
-
-const styles = StyleSheet.create({
-  modalContainer: {},
-});
