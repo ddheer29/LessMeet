@@ -85,7 +85,7 @@ const HomeScreen = () => {
         data={sessions}
         renderItem={renderSessions}
         key={item => item}
-        contentContainerStyle={{padding: 10}}
+        contentContainerStyle={{paddingVertical: 15}}
         ListEmptyComponent={
           <>
             <Image
