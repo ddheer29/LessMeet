@@ -28,7 +28,7 @@ export const useLiveMeetStore = create()(
       );
       set({participants: updatedParticipants});
     },
-    updatedParticipants: updatedParticipants => {
+    updateParticipant: updatedParticipants => {
       const {participants} = get();
       set({
         participants: participants.map(p =>
