@@ -24,6 +24,7 @@ export const useWebRTC = () => {
     removeSessionId,
     removeParticipant,
     updateParticipant,
+    clear,
   } = useLiveMeetStore();
   const {user} = useUserStore();
   const [localStream, setLocalStream] = useState(null);

@@ -9,6 +9,12 @@ export const useLiveMeetStore = create()(
     // chatMessages: [],
     micOn: false,
     videoOn: false,
+    clear: () => {
+      set({
+        sessionId: null,
+        participants: [],
+      });
+    },
     addSessionId: id => {
       set({sessionId: id});
     },
