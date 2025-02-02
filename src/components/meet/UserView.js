@@ -76,19 +76,19 @@ const UserView = ({localStream, containerDimensions}) => {
         let finalY = 0;
 
         switch (closestCorner) {
-          case topLeft:
+          case 'topLeft':
             finalX = 10;
             finalY = 10;
             break;
-          case topRight:
+          case 'topRight':
             finalX = containerWidth - containerWidth * 0.24 - 10;
             finalY = 10;
             break;
-          case bottomLeft:
+          case 'bottomLeft':
             finalX = 10;
             finalY = containerHeight - containerHeight * 0.26 - 20;
             break;
-          case bottomRight:
+          case 'bottomRight':
             finalX = containerWidth - containerWidth * 0.24 - 10;
             finalY = containerHeight - containerHeight * 0.26 - 20;
             break;
